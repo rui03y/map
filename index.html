@@ -1,106 +1,240 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bigo Navigation Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>导航站</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f7fa;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        header {
-            background: linear-gradient(to right, #66a6ff, #89f7fe);
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f5f6fa;
+            color: #333;
         }
+
+        .header {
+            background: linear-gradient(120deg, #4481eb 0%, #04befe 100%);
+            height: 260px;
+            position: relative;
+            overflow: hidden;
+            padding: 40px 20px 20px;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 60%, rgba(255,255,255,0.1) 0%, transparent 60%);
+        }
+
+
         .logo {
-            font-size: 2em;
-            color: #fff;
+            text-align: center;
+            margin: 20px 0;
         }
-        nav {
-            display: flex;
+
+        .logo img {
+            height: 40px;
         }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: bold;
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
         }
+
+        .search-box input {
+            width: 100%;
+            height: 45px;
+            padding: 0 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            color: #666;
+            cursor: pointer;
+        }
+
         .container {
-            padding: 40px;
+            max-width: 1200px;
+            margin: -50px auto 0;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
-        .category {
-            margin-bottom: 40px;
+
+        .section {
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
         }
-        .category h2 {
-            font-size: 1.5em;
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 500;
             margin-bottom: 20px;
+            color: #333;
         }
+
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
         }
+
         .card {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
-            text-decoration: none;
-            color: inherit;
+            padding: 15px;
+            border-radius: 6px;
+            background: #fff;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
         }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
         .card-icon {
-            width: 50px;
-            height: 50px;
-            background-color: #89f7fe;
-            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            background: #f0f5ff;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 20px;
+            margin-right: 12px;
+            color: #4481eb;
+            font-size: 20px;
+        }
+
+        .card-content h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+            color: #333;
+        }
+
+        .card-content p {
+            font-size: 12px;
+            color: #666;
+            margin: 0;
+        }
+
+        .star-icon {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .star-icon:hover {
+            color: #ffd700;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">BIGO UG 辅助</div>
-        <nav>
-            <a href="#">帮助</a>
-        </nav>
-    </header>
-    <div class="container">
-        <div class="category">
-            <h2>导航</h2>
-            <div class="grid">
-                <a href="https://bigotopr.asia/" class="card">
-                    <div class="card-icon">
-                        <span>器</span>
-                    </div>
-                    <div>
-                        <h3>deeplink生成器</h3>
-                        <p>生成广告可用deeplink</p>
-                    </div>
-                </a>
-                <a href="#" class="card">
-                    <div class="card-icon">
-                        <span>J</span>
-                    </div>
-                    <div>
-                        <h3>#完善中</h3>
-                        <p>……</p>
-                    </div>
-                </a>
-                <!-- Add more cards as needed -->
-            </div>
+    <header class="header">
+        
+        <div class="logo">
+            <h1 style="color: white; font-size: 36px;">BIGO导航</h1>
         </div>
-    </div>
+        <div class="search-box">
+            <input type="text" placeholder="输入关键字搜索">
+            <button>🔍</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <h2 class="section-title">项目管理</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <div class="card-content">
+                        <h3>禅道</h3>
+                        <p>项目管理平台</p>
+                    </div>
+                    <span class="star-icon">★</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">持续集成</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">🔄</div>
+                    <div class="card-content">
+                        <h3>Jenkins</h3>
+                        <p>持续集成平台</p>
+                    </div>
+                    <span class="star-icon">★</span>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌟</div>
+                    <div class="card-content">
+                        <h3>GitLab</h3>
+                        <p>代码托管平台</p>
+                    </div>
+                    <span class="star-icon">★</span>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🚀</div>
+                    <div class="card-content">
+                        <h3>Gerrit</h3>
+                        <p>代码审查平台</p>
+                    </div>
+                    <span class="star-icon">★</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">运营</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">📈</div>
+                    <div class="card-content">
+                        <h3>运营平台</h3>
+                        <p>数据分析与运营管理</p>
+                    </div>
+                    <span class="star-icon">★</span>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💻</div>
+                    <div class="card-content">
+                        <h3>OSS运营平台</h3>
+                        <p>存储服务管理</p>
+                    </div>
+                    <span class="star-icon">★</span>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
